@@ -14,7 +14,7 @@
                 :index="item.url+''"
                 :route="item.url+''"
                 :key="item.id"
-                style="padding-left: 50px;"
+                @click="savePath(item.url)"
                 >
                 <i :class="item.icon"></i>
                 <span slot="title">{{ item.menuName }}</span>
@@ -33,7 +33,15 @@
             };
         },
         //接收Main.vue中传递过来的参数
-        props: ["menuList"]
+        props: ["menuList"],
+        methods:{
+            //保存激活路径
+            savePath(path){
+                window.sessionStorage.setItem("activePath", path);
+                //调用Main.vue的activePath 
+                this.activePath = path;
+            }
+        }
     }
 </script>
 
