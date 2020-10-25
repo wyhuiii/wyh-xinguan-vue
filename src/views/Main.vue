@@ -22,7 +22,7 @@
         </el-header>
         <el-container>
             <!-- 侧边栏 -->
-          <el-aside :width="isCollapse?'60px':'200px'">
+          <el-aside :width="isCollapse?'64px':'200px'">
               <!-- 展开/收起 -->
               <div class="toggle_box" @click="toggleCollapse">| | |</div>
             <el-menu
@@ -35,13 +35,17 @@
             active-text-color="#ffd04b"
             :collapse="isCollapse"
             :collapse-transition="false"
+            :default-active="activePath"
             :unique-opened="true"
             :router="true">
             <!-- 引用组件 -->
             <MenuTree :menuList="this.MenuList"></MenuTree>
           </el-menu>
           </el-aside>
-          <el-main>Main</el-main>
+          <el-main>
+              <!-- 路由视图 -->
+              <router-view></router-view>
+          </el-main>
         </el-container>
       </el-container>
 </template>
@@ -54,6 +58,7 @@
         data(){
             return{
                 isCollapse: false,
+                activePath: '',
                 MenuList: [
                     {
                         id: 1,
@@ -564,9 +569,6 @@
   /* 内容主体 */
   .el-main {
     background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
   }
 
   /* 下拉菜单样式 */
